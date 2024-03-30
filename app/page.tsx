@@ -1,10 +1,12 @@
 import CubeGrid from '../components/CubeGrid';
+import Image from 'next/image';
+import c24Wordmark from '../public/c24-wordmark.svg';
 
 export default function Home() {
   return (
     <div className="relative">
       <div className="absolute inset-0 flex flex-col justify-center items-center">
-        <img src="/c24-wordmark.svg" alt="C24 Wordmark" />
+        <Image src={c24Wordmark} alt="TUM Blockchain Conference 24" />
         <div className="flex flex-col text-center mt-8">
           <span className="text-lg">Munich, Deutsches Museum</span>
           <div className="h-2" />
