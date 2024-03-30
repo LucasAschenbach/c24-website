@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'tbc-yellow': '#FFCB6D',
+        'tbc-pink': '#E434A5',
+        'tbc-blue': '#348AEB',
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
