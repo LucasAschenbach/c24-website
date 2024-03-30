@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Raleway, Inter, Montserrat, Cabin, DM_Sans, DM_Mono, Merriweather } from "next/font/google";
 import "./globals.css";
 
+// const inter = Inter({ subsets: ["latin"] });
+const raleway = Raleway({ subsets: ["latin"] });
 const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
+const cabin = Cabin({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ["latin"] });
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  weight: "300"
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={raleway.className}>{children}</body>
     </html>
   );
 }
