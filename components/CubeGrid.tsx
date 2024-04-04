@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { matrix } from 'mathjs';
 import { ellipticDistance, sigmoid } from '../libs/utils';
-import { time } from 'console';
 
 const CubeGrid = () => {
   const mountRef = useRef(null);
@@ -29,22 +28,14 @@ const CubeGrid = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     (mountRef.current! as HTMLElement).appendChild(renderer.domElement);
-
-    const light = new THREE.PointLight(0xffffff, 1000, 1000, 3)
-    light.position.set(0, 0, 10)
-    scene.add(light)
-
-    const cubes: THREE.Mesh<THREE.BoxGeometry, THREE.MeshPhysicalMaterial, THREE.Object3DEventMap>[] = [];
+    
+    const cubes: THREE.Mesh[] = [];
     const gridSize = 60;
     const spacing = 1.2;
     for (let x = 0; x < gridSize; x++) {
       for (let y = 0; y < gridSize; y++) {
         const geometry = new THREE.BoxGeometry(1, 1, 1);
-        const material = new THREE.MeshPhysicalMaterial({
-          opacity: 0.5,
-          roughness: 0.5,
-          color: 0xffffff,
-        });
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const cube = new THREE.Mesh(geometry, material);
         cube.position.set((x - gridSize / 2) * spacing, (y - gridSize / 2) * spacing, 0);
         scene.add(cube);
@@ -66,7 +57,7 @@ const CubeGrid = () => {
 
     const animate = () => {
       requestAnimationFrame(animate);
-    
+
       // minimal distance from center to edges of window in unit of three.js scene
       const rot = 0.4;
       const time = Date.now() * 0.0005;
@@ -76,10 +67,36 @@ const CubeGrid = () => {
         const noise = 0.5 * Math.sin(time + cube.position.x * 0.2) * Math.cos(Math.PI * time + cube.position.y * 0.2) + 0.5;
         const value = d + noise * 200;
         const scale = Math.max(0, 2 * sigmoid(value * 0.01 - 4) - 1);
+
+        const dist = Math.sqrt(cube.position.x ** 2 + cube.position.y ** 2);
+        const distN = sigmoid(dist * 0.25 - 4);
+
+        const colorGrad = (colors: string[], value: number) => {
+          for (let i = 1; i < colors.length; i++) {
+            if (value < i / (colors.length - 1)) {
+              const colorGradient = new THREE.Color(colors[i-1]).lerp(new THREE.Color(colors[i]), value * (colors.length - 1) - (i - 1));
+              return colorGradient.getHex();
+            }
+          }
+        };
+
+        const gray = "#606060";
+        const white = "#ffffff";
+        const yellow = "#FFCB6D";
+        const pink = "#E434A5";
+        const blue = "#348AEB";
+        const darkGray = "#080808";
+        const darkBlue = "#001122"
+        const black = "#000000";
+
+        const cubeColor = colorGrad([gray, darkGray], distN);
+        if (cube.material instanceof THREE.MeshBasicMaterial && cubeColor !== undefined) {
+          cube.material.color.set(cubeColor);
+        }
         
         cube.scale.set(scale, scale, scale);
       });
-    
+
       renderer.render(scene, camera);
     };
 
