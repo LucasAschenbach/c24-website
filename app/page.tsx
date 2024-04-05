@@ -32,18 +32,36 @@ export default function Home() {
         <div className="">
           <Image src={c24Wordmark} alt="TUM Blockchain Conference 24" />
         </div>
-        <div className="flex-[4_4_0%]">
+        <div className="flex-[5_5_0%]">
           <div className="flex flex-col items-center text-center mt-12">
             <span className="text-lg">Munich, Deutsches Museum</span>
             <div className="h-1" />
             <span className="text-lg">September 12th - 13th</span>
-            <div className="h-8" />
-            <div className="flex flex-row space-x-4">
-              {/* <a href="#">
-                <span className="tracking-widest bg-gradient-to-br from-tbc-yellow via-tbc-pink to-tbc-blue text-transparent bg-clip-text">
-                  GET NOTIFIED
-                </span>
-              </a> */}
+            <div className="h-12" />
+            <div className="flex flex-col">
+              Last Year's Conference
+              <div className="h-4" />
+              <div className="flex flex-row items-center space-x-8">
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl">1000+</span>
+                  <span className="text-sm">Attendees</span>
+                </div>
+                <div className="h-8 w-0.5 bg-neutral-500" />
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl">100+</span>
+                  <span className="text-sm">Speakers</span>
+                </div>
+                <div className="h-8 w-0.5 bg-neutral-500" />
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl">40+</span>
+                  <span className="text-sm">Talks</span>
+                </div>
+                <div className="h-8 w-0.5 bg-neutral-500" />
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl">20+</span>
+                  <span className="text-sm">Sponsors</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -55,6 +73,14 @@ export default function Home() {
         <a
           className="text-neutral-500"
           href="https://tum-blockchain.notion.site/Privacy-Policy-3af6ed14b0b3429191a161f3dd0b379d"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Contact
+        </a>
+        <a
+          className="text-neutral-500"
+          href="mailto:info@tum-blockchain.com"
           target="_blank"
           rel="noopener noreferrer"
         >
