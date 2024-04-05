@@ -39,7 +39,7 @@ export default function Home() {
             <span className="text-lg">September 12th - 13th</span>
             <div className="h-12" />
             <div className="flex flex-col">
-              Last Year's Conference
+              Last Year&apos;s Conference
               <div className="h-4" />
               <div className="flex flex-row items-center space-x-8">
                 <div className="flex flex-col items-center">
